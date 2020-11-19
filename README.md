@@ -71,11 +71,31 @@ To update user data by id, based on POST data (x-www-form-url-encoded)
 * email: User email
 * password: User password
 
-You can send only one attribute to update, the rest of the info remains the same.
+You can send only one attribute to update, the rest of the info remains the same. 
+
+In this example, using CURL you can update the user email:
+
+```bash
+curl -X PATCH -d "email=user@example1.com" http://localhost:8000/api/user/2
+```
 
 ## DELETE /api/user/{id}
 
-To remove a user from the database. 
+To remove a user from the database by user id. 
+
+This example is using the `curl` command line
+
+
+```bash
+curl -X "DELETE" http://localhost:8000/api/user/2
+```
+
+The result is:
+
+`{"message":"deleted","rows":1}`
+
+
+
 
 
 

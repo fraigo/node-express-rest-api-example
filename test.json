@@ -1,0 +1,9 @@
+{
+  "message": "success",
+  "data": {
+    "id": 1,
+    "name": "admin",
+    "email": "admin@example.com",
+    "password": "a66abb5684c45962d887564f08346e8d"
+  }
+}
