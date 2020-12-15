@@ -10,8 +10,9 @@
   "author": "Me",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "md5": "^2.2.1",
-    "sqlite3": "^4.0.4"
+    "nw-gyp": "^3.6.5",
+    "sqlite3": "^4.2.0"
   }
 }
