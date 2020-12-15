@@ -4,6 +4,16 @@ A Basic Node.js/Express REST API implementation example.
 
 Full Tutorial at https://developerhowto.com/2018/12/29/build-a-rest-api-with-node-js-and-express-js/
 
+# Prerequisites
+
+For Windows
+
+* Python 2.7 (for microsoft build tools)
+* Install Microsoft build tools (to build sqlite using node-gyp)
+  * Instructions here https://github.com/nodejs/node-gyp#on-windows
+  * Or install using npm (`npm install --global windows-build-tools`)
+* Node-gyp (`npm install --global node-gyp`)
+
 # Usage
 
 * Run `npm install` to installl dependencies
