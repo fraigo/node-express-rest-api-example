@@ -28,6 +28,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
+        context: .
         tags: |
           ${{ secrets.DOCKER_USER }}/oncall-demo:${{ github.run_number }}
           ${{ secrets.DOCKER_USER }}/oncall-demo:latest
