@@ -14,7 +14,7 @@ app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
 
-app.get("/api/users", (req, res, next) => {
+app.get("/api/oncall", (req, res, next) => {
     var sql = "select * from user"
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -30,7 +30,7 @@ app.get("/api/users", (req, res, next) => {
 });
 
 
-app.get("/api/user/:id", (req, res, next) => {
+app.get("/api/oncall/:id", (req, res, next) => {
     var sql = "select * from user where id = ?"
     var params = [req.params.id]
     db.get(sql, params, (err, row) => {
@@ -46,10 +46,10 @@ app.get("/api/user/:id", (req, res, next) => {
 });
 
 
-app.post("/api/user/", (req, res, next) => {
+app.post("/api/oncall/", (req, res, next) => {
     var errors=[]
-    if (!req.body.password){
-        errors.push("No password specified");
+    if (!req.body.tenant){
+        errors.push("No tenant specified");
     }
     if (!req.body.email){
         errors.push("No email specified");
@@ -61,10 +61,10 @@ app.post("/api/user/", (req, res, next) => {
     var data = {
         name: req.body.name,
         email: req.body.email,
-        password : md5(req.body.password)
+        tenant : req.body.tenant
     }
-    var sql ='INSERT INTO user (name, email, password) VALUES (?,?,?)'
-    var params =[data.name, data.email, data.password]
+    var sql ='INSERT INTO user (name, email, tenant) VALUES (?,?,?)'
+    var params =[data.name, data.email, data.tenant]
     db.run(sql, params, function (err, result) {
         if (err){
             res.status(400).json({"error": err.message})
@@ -80,19 +80,19 @@ app.post("/api/user/", (req, res, next) => {
 
 
 
-app.patch("/api/user/:id", (req, res, next) => {
+app.patch("/api/oncall/:id", (req, res, next) => {
     var data = {
         name: req.body.name,
         email: req.body.email,
-        password : req.body.password ? md5(req.body.password) : undefined
+        tenant : req.body.tenant 
     }
     db.run(
         `UPDATE user set 
            name = coalesce(?,name), 
            email = COALESCE(?,email), 
-           password = coalesce(?,password) 
+           tenant = coalesce(?,tenant) 
            WHERE id = ?`,
-        [data.name, data.email, data.password, req.params.id],
+        [data.name, data.email, data.tenant, req.params.id],
         (err, result) => {
             if (err){
                 res.status(400).json({"error": res.message})
@@ -106,7 +106,7 @@ app.patch("/api/user/:id", (req, res, next) => {
 })
 
 
-app.delete("/api/user/:id", (req, res, next) => {
+app.delete("/api/oncall/:id", (req, res, next) => {
     db.run(
         'DELETE FROM user WHERE id = ?',
         req.params.id,

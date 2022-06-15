@@ -1,0 +1,9 @@
+{
+  "message": "success",
+  "data": {
+    "id": 1,
+    "name": "joe",
+    "email": "joe@neilcar.com",
+    "tenant": "neilcar"
+  }
+}

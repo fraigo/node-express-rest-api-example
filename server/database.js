@@ -1,7 +1,7 @@
 var sqlite3 = require('sqlite3').verbose()
 var md5 = require('md5')
 
-const DBSOURCE = "db.sqlite" 
+const DBSOURCE = "/db/db.sqlite" 
 
 
 let db = new sqlite3.Database(DBSOURCE, (err) => {
@@ -11,20 +11,20 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
       throw err
     }else{
         console.log('Connected to the SQlite database.')
-        db.run(`CREATE TABLE user (
+        db.run(`CREATE TABLE oncall (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name text, 
             email text UNIQUE, 
-            password text, 
+            tenant text, 
             CONSTRAINT email_unique UNIQUE (email)
             )`,(err) => {
         if (err) {
             // Table already created
         }else{
             // Table just created, creating some rows
-            var insert = 'INSERT INTO user (name, email, password) VALUES (?,?,?)'
-            db.run(insert, ["admin","admin@example.com",md5("admin123456")])
-            db.run(insert, ["user","user@example.com",md5("user123456")])
+            var insert = 'INSERT INTO oncall (name, email, tenant) VALUES (?,?,?)'
+            db.run(insert, ["Neil Carpenter","me@neilcar.com","neilcar"])
+            db.run(insert, ["Marlon Rando","rand@neilcar.com","neilcar"])
         }
     })  
     }

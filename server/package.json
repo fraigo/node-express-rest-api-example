@@ -7,7 +7,7 @@
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Me",
+  "author": "Neil Carpenter <neil.carpenter@torq.io>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
